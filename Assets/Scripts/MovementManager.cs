@@ -9,6 +9,9 @@ public class MovementManager : MonoBehaviour {
     private Vector3 direction = new Vector3 (0.01f, 0.0f);  // direction in which to go
     private float collideDistance = 0.212f;                 // my width half
     public int numOfCollisions = 0;                         // speed multiplier for stuck sprites
+    public float speed = 0.01f;                             // speed of the sprites
+    public float leftSideOfScreen = 0.125f;                 // coordinates of left side of the screen
+    public float rightSideOfScreen = 20.35f;                // coordinates of right side of the screen
 
     // Use this for initialization
     void Start () {
@@ -30,14 +33,14 @@ public class MovementManager : MonoBehaviour {
         myPosition.Translate(direction);
 
         // update direction if there was alot of collitions before (for dealing with stuck sprites)
-        if (direction.x != 0.01f && direction.x != -0.01f) {
-            if (direction.x >= 0) direction.x = 0.01f;
-            else direction.x = -0.01f;
+        if (direction.x != speed && direction.x != -speed) {
+            if (direction.x >= 0) direction.x = speed;
+            else direction.x = -speed;
         }
 
         // reverse dirrection if reached the end of the screen
-        if (myPosition.position.x < 0.125f && direction.x < 0) direction *= -1f;
-        if(myPosition.position.x > 20.35f && direction.x > 0) direction *= -1f;
+        if (myPosition.position.x <  leftSideOfScreen && direction.x < 0) direction *= -1f;
+        if (myPosition.position.x > rightSideOfScreen && direction.x > 0) direction *= -1f;
 
         // check for collitions
         Collide();
@@ -48,9 +51,9 @@ public class MovementManager : MonoBehaviour {
 
     void Collide()
     {
-        // has collided ?
+        // has collided frame before?
         bool collided = false;
-
+    
         // lists for all gameobjects
         List<GameObject> allGos = new List<GameObject>(FindObjectsOfType<GameObject>());
         List<GameObject> otherWonderers = new List<GameObject>();

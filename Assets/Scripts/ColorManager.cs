@@ -6,24 +6,27 @@ public class ColorManager : MonoBehaviour {
 
     //variables
     
-    private SpriteRenderer myRenderer;
-    private Transform myPosition;
-    public Color myRefinedColor;
+    private SpriteRenderer myRenderer;          // spectrum wall's stripes sprite renderer 
+    private Transform myPosition;               // spectrum wall's stripes Transform
+    private float colorMultiplier = 3.0f;       // how much multiplication need to be done
 
-    // Use this for initialization
+    private Color myRefinedColor;                // required to save refined color 
+
+
     void Start () {
       
         // get my varaibles
         myRenderer = GetComponent<SpriteRenderer>();
         myPosition = gameObject.transform;
 
-        //get refiend color
+        //get refiend color from my color
         myRefinedColor = RefineColor(myRenderer.color);
 
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
+        // change color of every sprite that is above me
         ChangeColor(GetAllSpritesToChangeColor(),myRefinedColor);
 	}
 
@@ -31,9 +34,9 @@ public class ColorManager : MonoBehaviour {
     Color RefineColor(Color oldColor)
     {
         //Algorithm for color recalculation
-        float newRed   = 1.0f - (3 * (1.0f - oldColor.r));    
-        float newGreen = 1.0f - (3 * (1.0f - oldColor.g));
-        float newBlue  = 1.0f - (3 * (1.0f - oldColor.b));
+        float newRed   = 1.0f - (colorMultiplier * (1.0f - oldColor.r));    
+        float newGreen = 1.0f - (colorMultiplier * (1.0f - oldColor.g));
+        float newBlue  = 1.0f - (colorMultiplier * (1.0f - oldColor.b));
 
         //Normalize Colors values
         if (newRed > 1.0f) newRed = 1.0f;
