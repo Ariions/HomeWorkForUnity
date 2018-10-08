@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Entities;
 
 public class GameManager : MonoBehaviour {
 
@@ -35,3 +36,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 }
+
+
+
+
+

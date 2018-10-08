@@ -60,11 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\colorWall.cs" />
-    <Compile Include="Assets\Movement.cs" />
-    <Compile Include="Assets\Scripts\ColorManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\MovementManager.cs" />
+    <Compile Include="Assets\Scripts\Hybrid\colorWall.cs" />
+    <Compile Include="Assets\Scripts\Hybrid\Movement.cs" />
+    <Compile Include="Assets\Scripts\Old\ColorManager.cs" />
+    <Compile Include="Assets\Scripts\Old\MovementManager.cs" />
     <Reference Include="Unity.Entities.Properties">
       <HintPath>C:/Users/Arnas_PC/Documents/GitHub/HomeWorkForUnity/HomeWork NR1/DOD - hybrid/Library/ScriptAssemblies/Unity.Entities.Properties.dll</HintPath>
     </Reference>
