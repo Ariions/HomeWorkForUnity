@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour {
     public int howMany;                     // how many to spawn
     public static float leftSideOfScreen = 0.125f;                 // coordinates of left side of the screen
     public static float rightSideOfScreen = 20.35f;                // coordinates of right side of the screen
-    public static float topSideOfScreen = 4.74f;                // coordinates of right side of the screen
-    public static float bottomSideOfScreen = -4.74f;                // coordinates of right side of the screen
+    public static float topSideOfScreen = 4.74f;                   // coordinates of top side of the screen
+    public static float bottomSideOfScreen = -4.74f;               // coordinates of bottom side of the screen
 
     private void Start()
     {

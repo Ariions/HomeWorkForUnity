@@ -4,16 +4,18 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Rendering;
 
+// Component to save modified color of the wall for moving sprites
 public class colorWall : MonoBehaviour {
-    public int index;
     public Color trueColor;
 }
 
+
 class ColorSystem : ComponentSystem
 {
-
+    //Variables
     private static float colorMultiplier = 3.0f;       // how much multiplication need to be done
 
+    // struct as a tample for a group of moving sprites
     struct MovingSprites
     {
         public Movement movement;
@@ -21,6 +23,7 @@ class ColorSystem : ComponentSystem
         public SpriteRenderer spriteRenderer;
     }
 
+    // struct as a tample for a group of wall sprites
     struct WallStripes
     {
         public colorWall colorWall;
@@ -29,10 +32,9 @@ class ColorSystem : ComponentSystem
     }
 
     
-    Color[] newColors;
-
     protected override void OnStartRunning()
     { 
+        // Get refined colors based on your color
         foreach (WallStripes e in GetEntities<WallStripes>())
         {
             e.colorWall.trueColor = RefineColor(e.spriteRenderer.color);
@@ -41,6 +43,7 @@ class ColorSystem : ComponentSystem
 
     protected override void OnUpdate()
     {
+        // Paint moving sprites
         foreach (MovingSprites wonderer in GetEntities<MovingSprites>())
         {
             wonderer.spriteRenderer.color = DetirmeneColor(wonderer.transform.position.x);
@@ -48,7 +51,7 @@ class ColorSystem : ComponentSystem
     }
 
     
-
+    // method to refine color
     Color RefineColor(Color oldColor)
     {
         //Algorithm for color recalculation
@@ -71,16 +74,17 @@ class ColorSystem : ComponentSystem
         return newColor;
     }
 
+    //calculate above which wall sprite is other sprites
     Color DetirmeneColor(float coordinates)
     {
         foreach (WallStripes e in GetEntities<WallStripes>())
         {
+            // because wall sprites are 1.5f width if you are less then 0.75 way you are above it
             if (Mathf.Abs(coordinates - e.transform.position.x) < 0.75f)
             {
-                return  e.colorWall.trueColor;
+                return e.colorWall.trueColor;
             }
         }
-        return new Color(0,0,0);
+        return new Color(0, 0, 0);
     }
-
 }

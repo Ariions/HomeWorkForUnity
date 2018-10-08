@@ -648,7 +648,7 @@ PlayerSettings:
   cloudServicesEnabled:
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: b903438d-cf2a-49a4-b432-7b29704899cc
   projectName: HomeWorkNr1-OOD
   organizationId: arnas_unity

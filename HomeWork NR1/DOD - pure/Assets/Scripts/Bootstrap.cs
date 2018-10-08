@@ -15,7 +15,7 @@ public class Bootstrap : MonoBehaviour {
     public int numbOfSprites = 1;   //number of sprites to spawn
     public Material[] materials;    //materials for spectrum wall
 
-    private static float colorMultiplier = 1.5f;
+    private static float colorMultiplier = 1.5f;                    // multiplier to make colors more vivid
     private static Vector3 scale = new Vector3(0.1f, 0.1f, 0.1f);   //scale multipliers for moving sprites
     private static Vector3 wallScale = new Vector3(1.5f, 10f, 0.1f);//scale multipliers for spectrum wall sprites
 
@@ -161,11 +161,5 @@ public class Bootstrap : MonoBehaviour {
         return newColor;
     }
 
-    public bool isColliding(Position position)
-    {
-
-
-        return true;
-    }
 
 }
